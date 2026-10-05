@@ -1,1 +1,1 @@
-# Wearza - Fullstack Clothing Ecommerce Store 
+# Wearza - Fullstack Clothing E-commerce Store 
