@@ -1,5 +1,5 @@
 import { getAuth } from "@clerk/express";
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { AppError } from "../../utils/appError.util.js";
 import User from "../../models/user/user.model.js";
 import { asyncHandler } from "../../utils/asyncHandler.util.js";

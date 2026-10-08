@@ -1,4 +1,4 @@
-import { NextFunction, Request, response, Response } from "express";
+import type { NextFunction, Request, response, Response } from "express";
 import { fail } from "../../utils/envelope.util.js";
 import { AppError } from "../../utils/appError.util.js";
 
@@ -13,12 +13,12 @@ export function errorHandler(
   _next: NextFunction,
 ) {
   if (error instanceof AppError) {
-    return response
+    return _response
       .status(error.statusCode)
       .json(fail(error.message, `APP_ERROR`));
   }
 
   console.error("error", error);
 
-  return response.json(500).json(fail("Internal Server Error", `INTERNAL`));
+  return _response.json(500).json(fail("Internal Server Error", `INTERNAL`));
 }
