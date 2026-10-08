@@ -17,6 +17,7 @@ async function mainServer() {
       .map((origin) => origin.trim())
       .filter(Boolean);
 
+    // common middleware
     app.use(
       cors({
         origin: corsOrigin,
@@ -26,9 +27,11 @@ async function mainServer() {
 
     app.use(express.json());
     app.use(morgan("dev"));
+    // error middleware
     app.use(notFound);
     app.use(errorHandler);
-    app.use(clerkMiddleware()); 
+    // auth middleware
+    app.use(clerkMiddleware());
 
     const port = Number(process.env.PORT) || 3001;
 
@@ -41,6 +44,6 @@ async function mainServer() {
 }
 
 mainServer().catch((error) => {
-  console.error("failed to start", error); 
-  process.exit(1); 
+  console.error("failed to start", error);
+  process.exit(1);
 });
