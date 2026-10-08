@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export type User = "user" | "admin";
 
@@ -24,8 +24,22 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
+  points: {
+    type: Number,
+    default: 0,
+    min: 0,
+  },
+  addresses: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Address",
+      },
+    ],
+    default: [],
+  },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

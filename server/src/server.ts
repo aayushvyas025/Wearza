@@ -7,6 +7,7 @@ import {
   errorHandler,
   notFound,
 } from "./middlewares/error/error.middleware.js";
+import { clerkMiddleware } from "@clerk/express";
 
 async function mainServer() {
   try {
@@ -27,6 +28,7 @@ async function mainServer() {
     app.use(morgan("dev"));
     app.use(notFound);
     app.use(errorHandler);
+    app.use(clerkMiddleware()); 
 
     const port = Number(process.env.PORT) || 3001;
 
